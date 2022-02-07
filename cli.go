@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
-	color, breakInterval, breakLength := utils.Args()
+	color, interval, duration := utils.Args()
 
-	isBreak := utils.IsBreak(breakInterval, breakLength)
+	isBreak := utils.IsBreak(interval, duration)
 
 	for {
 		utils.Clear()

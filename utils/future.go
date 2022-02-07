@@ -4,10 +4,10 @@ import (
 	"time"
 )
 
-func futureTime(breakInterval int) time.Time {
+func futureTime(interval int) time.Time {
 	t := time.Now()
 
-	future := t.Add(time.Minute * time.Duration(breakInterval))
+	future := t.Add(time.Minute * time.Duration(interval))
 
 	return future
 }
@@ -17,13 +17,13 @@ var timestamp = map[string]int64{
 	"futureBreakStop":  0,
 }
 
-func updateTimestamp(breakInterval int, breakLength int) {
-	timestamp["futureBreakStart"] = futureTime(breakInterval).UnixMilli()
-	timestamp["futureBreakStop"] = futureTime(breakInterval + breakLength).UnixMilli()
+func updateTimestamp(interval int, duration int) {
+	timestamp["futureBreakStart"] = futureTime(interval).UnixMilli()
+	timestamp["futureBreakStop"] = futureTime(interval + duration).UnixMilli()
 }
 
-func IsBreak(breakInterval int, breakLength int) func() bool {
-	updateTimestamp(breakInterval, breakLength)
+func IsBreak(interval int, duration int) func() bool {
+	updateTimestamp(interval, duration)
 
 	return func() bool {
 		now := time.Now().UnixMilli()
@@ -33,7 +33,7 @@ func IsBreak(breakInterval int, breakLength int) func() bool {
 		}
 
 		if now >= timestamp["futureBreakStop"] {
-			updateTimestamp(breakInterval, breakLength)
+			updateTimestamp(interval, duration)
 		}
 
 		return false
