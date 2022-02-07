@@ -1,41 +1,39 @@
 package utils
 
 import (
-	"fmt"
 	"time"
 )
 
-func futureTime(interval int) time.Time {
+func futureTime(breakInterval int) time.Time {
 	t := time.Now()
 
-	future := t.Add(time.Minute * time.Duration(interval))
+	future := t.Add(time.Minute * time.Duration(breakInterval))
 
 	return future
 }
 
-/*
-func next(time time.Time) func() time.Time {
-	var nextTime time.Time = time
-
-	return func() time.Time {
-
-	}
+var timestamp = map[string]int64{
+	"futureBreakStart": 0,
+	"futureBreakStop":  0,
 }
-*/
-func IsBreak(interval int, breakLength int) func() bool {
-	var timeFormat string = "15:04:05 - 01-02-2006"
 
-	future := futureTime(interval).Format(timeFormat)
+func updateTimestamp(breakInterval int, breakLength int) {
+	timestamp["futureBreakStart"] = futureTime(breakInterval).UnixMilli()
+	timestamp["futureBreakStop"] = futureTime(breakInterval + breakLength).UnixMilli()
+}
 
-	futureBreak := futureTime(breakLength)
+func IsBreak(breakInterval int, breakLength int) func() bool {
+	updateTimestamp(breakInterval, breakLength)
 
 	return func() bool {
-		fmt.Println(futureBreak)
-		fmt.Println(futureBreak.UnixNano() / 1000)
-		now := time.Now().Format(timeFormat)
+		now := time.Now().UnixMilli()
 
-		if now == future {
+		if now >= timestamp["futureBreakStart"] && now <= timestamp["futureBreakStop"] {
 			return true
+		}
+
+		if now >= timestamp["futureBreakStop"] {
+			updateTimestamp(breakInterval, breakLength)
 		}
 
 		return false

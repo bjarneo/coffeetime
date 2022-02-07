@@ -97,9 +97,9 @@ func printCoffee() {
 }
 
 func run() {
-	color, interval := utils.Args()
+	color, breakInterval, breakLength := utils.Args()
 
-	isBreak := utils.IsBreak(interval, 1)
+	isBreak := utils.IsBreak(breakInterval, breakLength)
 
 	for {
 		clear()
