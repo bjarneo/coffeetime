@@ -5,7 +5,7 @@ import (
 	"github.com/bjarneo/coffeetime/utils"
 )
 
-func run() {
+func main() {
 	color, breakInterval, breakLength := utils.Args()
 
 	isBreak := utils.IsBreak(breakInterval, breakLength)
@@ -23,8 +23,4 @@ func run() {
 
 		utils.Sleep()
 	}
-}
-
-func main() {
-	run()
 }
