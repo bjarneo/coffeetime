@@ -42,6 +42,9 @@ coffeetime -interval 45 -duration 5 -color blue
   lightMagenta
 ```
 
+## Download the binary
+<https://github.com/bjarneo/coffeetime/releases>
+
 ## Get it up and running [DEV]
 
 ```bash
