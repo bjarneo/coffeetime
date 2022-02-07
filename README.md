@@ -1,15 +1,29 @@
-Real bad code base written in GO as a learning project
+# coffee time
 
-build/ has the cli for darwin and linux.
+With this cli tool you can set up interval for when you'd like to take a break with a time interval between them, and how long the duration should be. It is really important to take breaks, and it is easy to forget them.
 
-Usage:
+Disclaimer: This is a learning golang project.
+
+## Get it up and running [DEV]
 
 ```bash
-$ mv build/cli-{system} /usr/local/bin/stonks
+# By using the go binary directly
+go run cli.go
 
-# usage stonks -i intervalSeconds stock1 stock2 stock3
-$ stonks -i 5 gme amc tsla mvis
-
+# By using air you can develop with hot reloading
+air
 ```
 
-TODO: Rewrite the entire thing
+Air: [<https://github.com/cosmtrek/air>](https://github.com/cosmtrek/air)
+
+## Compile to binaries
+
+```bash
+./build.sh
+```
+
+The binaries will be available in the `build/` folder.
+
+## License
+
+MIT [License](./LICENSE)
