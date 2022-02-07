@@ -6,7 +6,7 @@ Disclaimer: This is a learning golang project.
 
 ## Usage
 
-By assuming you have installed the binary as coffeetime
+By assuming you have installed the binary as coffeetime by downloading the binary from <https://github.com/bjarneo/coffeetime/releases>
 
 ```bash
 coffeetime -interval 45 -duration 5 -color blue
