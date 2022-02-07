@@ -1,6 +1,6 @@
 # coffee time
 
-With this cli tool you can set up interval for when you'd like to take a break with a time interval between them, and how long the duration should be. It is really important to take breaks, and it is easy to forget them.
+With this cli tool you can set up interval for when you'd like to take a break, and how long the duration should be. It is really important to take breaks, and it is easy to forget them.
 
 Disclaimer: This is a learning golang project.
 
@@ -45,6 +45,7 @@ coffeetime -interval 45 -duration 5 -color blue
 ```
 
 ## Download the binary
+
 <https://github.com/bjarneo/coffeetime/releases>
 
 ## Get it up and running [DEV]
