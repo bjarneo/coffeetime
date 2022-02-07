@@ -4,6 +4,8 @@ With this cli tool you can set up interval for when you'd like to take a break w
 
 Disclaimer: This is a learning golang project.
 
+![coffeetime.gif](./coffeetime.gif)
+
 ## Usage
 
 By assuming you have installed the binary as coffeetime by downloading the binary from <https://github.com/bjarneo/coffeetime/releases>
