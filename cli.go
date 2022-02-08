@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/bjarneo/coffeetime/print"
+	"github.com/bjarneo/coffeetime/request"
 	"github.com/bjarneo/coffeetime/utils"
 )
 
@@ -18,6 +19,8 @@ func main() {
 		print.Clock(*flags.Color)
 
 		if isBreak() {
+			request.GetHook(*flags.Webhook, isBreak())
+
 			print.Coffee()
 		}
 
