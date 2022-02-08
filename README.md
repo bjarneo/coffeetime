@@ -16,9 +16,9 @@ coffeetime -interval 45 -duration 5 -color blue
 
 ### The default values
 
-```bash
--interval 120           The interval between breaks
--duration 5             The duration of the break
+```
+-interval 120           The interval in minutes between breaks
+-duration 5             The duration in minutes of the break
 -color lightYellow      The color of the clock
 ```
 
