@@ -8,27 +8,21 @@ import (
 var shouldRun bool = false
 
 func httpClient() *http.Client {
-	return &http.Client{Timeout: 10 * time.Second}
+	return &http.Client{Timeout: 15 * time.Second}
 }
 
-func GetHook(webhook string, isBreak bool) bool {
-	if !shouldRun && isBreak {
-		shouldRun = true
-	}
-
-	if webhook == "" || !shouldRun {
+func GetHook(webhook string) bool {
+	if webhook == "" {
 		return false
 	}
 
-	resp, err := http.Get(webhook)
-
-	shouldRun = false
+	res, err := httpClient().Get(webhook)
 
 	if err != nil {
 		return false
 	}
 
-	defer resp.Body.Close()
+	defer res.Body.Close()
 
 	return true
 }

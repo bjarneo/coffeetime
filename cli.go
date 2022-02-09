@@ -18,9 +18,11 @@ func main() {
 
 		print.Clock(*flags.Color)
 
-		if isBreak() {
-			request.GetHook(*flags.Webhook, isBreak())
+		if utils.ShouldRunOnce(isBreak()) {
+			request.GetHook(*flags.Webhook)
+		}
 
+		if isBreak() {
 			print.Coffee()
 		}
 
