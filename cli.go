@@ -6,16 +6,16 @@ import (
 )
 
 func main() {
-	color, interval, duration := utils.Args()
+	flags := utils.Args()
 
-	isBreak := utils.IsBreak(interval, duration)
+	isBreak := utils.IsBreak(*flags.Interval, *flags.Duration)
 
 	for {
 		utils.Clear()
 
 		print.Title()
 
-		print.Clock(color)
+		print.Clock(*flags.Color)
 
 		if isBreak() {
 			print.Coffee()
