@@ -1,31 +1,44 @@
 package main
 
 import (
+	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/bjarneo/coffeetime/print"
 	"github.com/bjarneo/coffeetime/request"
 	"github.com/bjarneo/coffeetime/utils"
 )
 
 func main() {
-	flags := utils.Args()
+	cancelChan := make(chan os.Signal, 1)
+	signal.Notify(cancelChan, syscall.SIGTERM, syscall.SIGINT)
 
-	isBreak := utils.IsBreak(*flags.Interval, *flags.Duration)
+	go func() {
+		flags := utils.Args()
 
-	for {
-		utils.Clear()
+		isBreak := utils.IsBreak(*flags.Interval, *flags.Duration)
 
-		print.Title()
+		for {
+			utils.Clear()
 
-		print.Clock(*flags.Color)
+			print.Title()
 
-		if utils.ShouldRunOnce(isBreak()) {
-			request.GetHook(*flags.Webhook)
+			print.Clock(*flags.Color)
+
+			if utils.ShouldRunOnce(isBreak()) {
+				request.GetHook(*flags.Webhook)
+			}
+
+			if isBreak() {
+				print.Coffee()
+			}
+
+			utils.Sleep()
 		}
+	}()
 
-		if isBreak() {
-			print.Coffee()
-		}
-
-		utils.Sleep()
-	}
+	<-cancelChan
+	fmt.Printf("Aww, see you around")
 }
