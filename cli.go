@@ -29,6 +29,7 @@ func main() {
 
 			if utils.ShouldRunOnce(isBreak()) {
 				request.GetHook(*flags.Webhook)
+				utils.Notify(*flags.Notify)
 			}
 
 			if isBreak() {
